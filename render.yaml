@@ -1,0 +1,14 @@
+services:
+  - type: web
+    name: property-api
+    env: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: RENTVINE_SUBDOMAIN
+        value: securedoorpm
+      - key: RENTVINE_API_KEY
+        fromSecret: RENTVINE_API_KEY
+      - key: RENTVINE_API_SECRET
+        fromSecret: RENTVINE_API_SECRET
